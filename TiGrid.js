@@ -1,15 +1,15 @@
 /**
  * TiGridCoordinate adds some sugar to TiGrid
  * 
- * @argument params Object
+ * @argument _args Object
  */
-function TiGridCoordinate (/*Object*/ params) {
-	this.bottom = params.bottom;
-	this.top = params.bottom + params.height;
-	this.left = params.left;
-	this.right = params.left + params.width;
-	this.height = params.height;
-	this.width = params.width;
+function TiGridCoordinate (/*Object*/ _args) {
+	this.bottom = _args.bottom;
+	this.top = _args.bottom + _args.height;
+	this.left = _args.left;
+	this.right = _args.left + _args.width;
+	this.height = _args.height;
+	this.width = _args.width;
 }
 
 /**
@@ -29,7 +29,7 @@ TiGridCoordinate.prototype.position = function (/*TiView*/ view) {
  * TiGrid is a simple function to assist
  * with evenly distributed positioning of elements
  * 
- * @argument params Object 
+ * @argument _args Object 
  *  cols: Number of grid columns, 
  *  rows: Number of grid rows, 
  *  width: Width of the grid
@@ -37,14 +37,14 @@ TiGridCoordinate.prototype.position = function (/*TiView*/ view) {
  *  margin: Amount of space to leave on all sides
  * }
  */
-function TiGrid(/*Object*/ params) {
-	params = params || {};
+function TiGrid(/*Object*/ _args) {
+	_args = _args || {};
 	
-	this.cols = params.cols || 1;
-	this.rows = params.rows || 1;
-	this.width = params.width || 0;
-	this.height = params.height || 0;
-	this.margin = params.margin || 0;
+	this.cols = _args.cols || 1;
+	this.rows = _args.rows || 1;
+	this.width = _args.width || 0;
+	this.height = _args.height || 0;
+	this.margin = _args.margin || 0;
 	
 	// Rows, cols, height and width are all required
 	if (this.cols < 1 || this.rows < 1 || this.width < 1 || this.height < 1) {
@@ -57,15 +57,15 @@ function TiGrid(/*Object*/ params) {
  * 
  * @argument x Int	Horizontal cell location starting at 0
  * @argument y Int	Vertical cell location starting at 0
- * @argument params Object
+ * @argument _args Object
  *  colspan: Number of cells the position stretches horizontally
  *  rowspan: Number of cells the position stretches vertically
  */
-TiGrid.prototype.coord = function (x, y, /*Object*/ params) {
-	params = params || {};
+TiGrid.prototype.coord = function (x, y, /*Object*/ _args) {
+	_args = _args || {};
 	
-	var colspan = params.colspan || 1,
-		rowspan = params.rowspan || 1;
+	var colspan = _args.colspan || 1,
+		rowspan = _args.rowspan || 1;
 	
 	// x and y must be within their bounds
 	if (x < 0 || x > this.cols || y < 0 || y > this.rows) {

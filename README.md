@@ -10,6 +10,7 @@ var TiGrid = require('lib/TiGrid/TiGrid');
 ```
 
 ### Create a new grid.
+Create a new grid object as you would any other javascript object. Be sure to set its `height`, `width`, `cols` and `rows` attributes, these are required. 
 Optionally you can include a `margin` parameter when making your grid to space your elements apart.
 
 ```javascript
@@ -35,14 +36,15 @@ You may position anything within the grid by referencing some `x,y` coordinates 
 
 Here `A is 0,0` and `B is 3,4`
 
-Now to position any elements you may have you only need to reference the grid's coordinates and give it a view to position.
+Now, to retrieve a cells information from within the grid call the `grid.coord` method whilst passing in your x,y coordinates. This will return an object with height, width, left and bottom attributes, not overly usefull. 
+With coordinates set, extend your call to include the `position` method and it will fill the cell at those coordinates with a view, perfectly positioned and sized.
 
 ```javascript
 var myView = Ti.UI.createView();
 grid.coord(0,0).position(myView);
 ```    
 
-`myView` will be positioned to the lower left of the grid (`A` in our previous example). It's height and width will be set to fit solely into that grid coordinate.
+`myView` will be positioned to the lower left of the grid (`A` in our previous example). It's height and width will be set to fit neatly into that grid coordinate.
 
 ### colspan and rowspan
 Since its unlikely you'll want everything the same size within your grid you can use the `colspan` and `rowspan` parameters to position your views into larger areas whilst still respecting any margins you've set.
@@ -52,7 +54,7 @@ var myView = Ti.UI.createView();
 // myView's height will stretch over 2 rows
 grid.coord(0,0,{rowspan: 2}).position(myView);
 
-// Or also 2 columns
+// Or have your view stretch 2 columns and 2 rows
 grid.coord(0,0,{rowspan: 2, colspan: 2}).position(myView);
 ```
 
