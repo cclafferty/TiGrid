@@ -69,12 +69,12 @@ TiGrid.prototype.coord = function (x, y, /*Object*/ _args) {
 	
 	// x and y must be within their bounds
 	if (x < 0 || x > this.cols || y < 0 || y > this.rows) {
-		throw new Error('Incorrect paramaters: x or y out of bounds');
+		throw new Error('Incorrect parameters: x or y out of bounds');
 	}
 	
 	// colspan and rowspan must be within their bounds
-	if (rowspan < 1 || rowspan > (this.rows - 1) || colspan < 1 || colspan > (this.cols - 1)) {
-		throw new Error('Incorrect paramaters: colspan or rowspan out of bounds');
+	if (rowspan < 1 || rowspan > this.rows || colspan < 1 || colspan > this.cols) {
+		throw new Error('Incorrect parameters: colspan or rowspan out of bounds');
 	}
 	
 	// Finally return the position they were after
